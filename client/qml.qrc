@@ -5,5 +5,9 @@
         <file>Page1Form.ui.qml</file>
         <file>Page2Form.ui.qml</file>
         <file>qtquickcontrols2.conf</file>
+        <file>LoginScreen.qml</file>
+        <file>LoginScreenForm.ui.qml</file>
+        <file>quit_button.png</file>
+        <file>sign_in_button.png</file>
     </qresource>
 </RCC>
