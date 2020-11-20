@@ -119,4 +119,11 @@ Page {
         target: backbutton
         onClicked: stackView.pop()
     }
+    Connections {
+        target: button1
+        onClicked: {stackView.push("ProfileForm.ui.qml")
+            stackView.push("ProfileForm.ui.qml") //this pushes twice so that I can keep the toolbar hidden before logging in
+
+        }
+    }
 }
