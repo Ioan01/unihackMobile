@@ -11,36 +11,32 @@ Page {
         width: 400
         color: "#d0d0d0"
         anchors.fill: parent
+        anchors.rightMargin: 0
+        anchors.bottomMargin: 0
+        anchors.leftMargin: 0
+        anchors.topMargin: 0
 
         transformOrigin: Item.Center
 
-        Text {
-            id: text1
-            x: 128
-            y: 14
-            text: qsTr("Login")
-            font.pixelSize: 48
-        }
-
         TextField {
             id: textField
-            x: 86
-            y: 213
+            x: 100
+            y: 120
             placeholderText: qsTr("Text Field")
         }
 
         TextField {
             id: textField1
-            x: 85
-            y: 338
+            x: 100
+            y: 245
             placeholderText: qsTr("Text Field")
         }
 
         Label {
             id: label
-            x: 111
-            y: 165
-            width: 179
+            x: 130
+            y: 44
+            width: 141
             height: 42
             text: qsTr("Username")
             font.pointSize: 24
@@ -48,31 +44,12 @@ Page {
 
         Label {
             id: label1
-            x: 111
-            y: 290
-            width: 179
+            x: 134
+            y: 186
+            width: 132
             height: 42
             text: qsTr("Password")
             font.pointSize: 24
-        }
-
-        Button {
-            id: button
-            x: 140
-            y: 497
-            width: 124
-            height: 55
-            visible: true
-            text: qsTr("Button")
-            display: AbstractButton.IconOnly
-
-            Image {
-                id: quit_button
-                anchors.fill: parent
-                source: "quit_button.png"
-                anchors.bottomMargin: 0
-                fillMode: Image.PreserveAspectFit
-            }
         }
 
         Button {
@@ -87,11 +64,28 @@ Page {
 
             Image {
                 id: sign_in_button
-                x: 0
-                y: 0
-                width: 124
-                height: 55
+                x: -11
+                y: -5
+                width: 146
+                height: 66
                 source: "sign_in_button.png"
+                fillMode: Image.PreserveAspectFit
+            }
+        }
+
+        Button {
+            id: button2
+            x: 150
+            y: 339
+            text: qsTr("")
+
+            Image {
+                id: login_button
+                x: -56
+                y: -21
+                width: 213
+                height: 81
+                source: "login_button.png"
                 fillMode: Image.PreserveAspectFit
             }
         }
@@ -100,4 +94,14 @@ Page {
     target:button1
     onClicked: stackView.push("RegisterScreenForm.ui.qml")
     }
+
+    Connections{
+    target:button2
+    onClicked:{stackView.push("Page1Form.ui.qml")
+        stackView.push("Page1Form.ui.qml") //this pushes twice so that I can keep the toolbar hidden before logging in
+
+    }
+
+    }
+
 }

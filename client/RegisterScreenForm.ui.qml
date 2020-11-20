@@ -20,9 +20,9 @@ Page {
 
         Text {
             id: text1
-            x: 143
+            x: 118
             y: 20
-            text: qsTr("Login")
+            text: qsTr("Sign Up")
             font.pixelSize: 48
         }
 
@@ -61,28 +61,9 @@ Page {
         }
 
         Button {
-            id: button
-            x: 140
-            y: 497
-            width: 124
-            height: 55
-            visible: true
-            text: qsTr("Button")
-            display: AbstractButton.IconOnly
-
-            Image {
-                id: quit_button
-                anchors.fill: parent
-                source: "quit_button.png"
-                anchors.bottomMargin: 0
-                fillMode: Image.PreserveAspectFit
-            }
-        }
-
-        Button {
             id: button1
             x: 138
-            y: 424
+            y: 394
             width: 124
             height: 55
             visible: true
@@ -91,11 +72,28 @@ Page {
 
             Image {
                 id: sign_in_button
-                x: 0
-                y: 0
-                width: 124
-                height: 55
+                x: -12
+                y: -6
+                width: 148
+                height: 65
                 source: "sign_in_button.png"
+                fillMode: Image.PreserveAspectFit
+            }
+        }
+
+        Button {
+            id: backbutton
+            x: 151
+            y: 480
+            text: qsTr("")
+
+            Image {
+                id: back_button
+                x: -31
+                y: -8
+                width: 163
+                height: 57
+                source: "back_button.png"
                 fillMode: Image.PreserveAspectFit
             }
         }
@@ -116,5 +114,9 @@ Page {
         height: 42
         text: qsTr("Confirm password")
         font.pointSize: 24
+    }
+    Connections {
+        target: backbutton
+        onClicked: stackView.pop()
     }
 }
