@@ -9,5 +9,7 @@
         <file>LoginScreenForm.ui.qml</file>
         <file>quit_button.png</file>
         <file>sign_in_button.png</file>
+        <file>RegisterScreen.qml</file>
+        <file>RegisterScreenForm.ui.qml</file>
     </qresource>
 </RCC>
