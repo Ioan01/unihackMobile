@@ -3,8 +3,8 @@ import QtQuick.Controls 2.5
 
 ApplicationWindow {
     id: window
-    width: 640
-    height: 480
+    width: 400
+    height: 600
     visible: true
     title: qsTr("Stack")
 
@@ -12,6 +12,7 @@ ApplicationWindow {
         id:toolBar
         contentHeight: toolButton.implicitHeight
         visible: stackView.depth >2 ? 1 : 0 // + sa verifice si pentru sign in
+
         ToolButton {
             id: toolButton
             text: "\u2630"
@@ -35,6 +36,7 @@ ApplicationWindow {
         id: drawer
         width: window.width * 0.66
         height: window.height
+        interactive: stackView.depth >2 ? 1 : 0
 
         Column {
             anchors.fill: parent
