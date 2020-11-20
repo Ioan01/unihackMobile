@@ -13,7 +13,8 @@
 void query::run()
 {
     qDebug() << "Query = " << comm;
-    QSqlQuery que = db->exec(QString(comm));
+    //QSqlQuery que = db->exec(QString(comm));
+    QSqlQuery que = db->exec("SELECT * FROM users");
     int i = 0;
     QString buffer="{\n";
     QSqlDriver* driver = db->driver();
