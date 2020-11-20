@@ -12,5 +12,6 @@
         <file>RegisterScreen.qml</file>
         <file>RegisterScreenForm.ui.qml</file>
         <file>login_button.png</file>
+        <file>back_button.png</file>
     </qresource>
 </RCC>

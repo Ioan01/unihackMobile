@@ -9,19 +9,19 @@ ApplicationWindow {
     title: qsTr("Stack")
 
     header: ToolBar {
+        id:toolBar
         contentHeight: toolButton.implicitHeight
-        visible: stackView.depth >1 ? 1 :0 // + sa verifice si pentru sign in
+        visible: stackView.depth >2 ? 1 : 0 // + sa verifice si pentru sign in
         ToolButton {
             id: toolButton
-            text: stackView.depth > 1 ? "\u25C0" : "\u2630"
+            text: "\u2630"
             font.pixelSize: Qt.application.font.pixelSize * 1.6
             onClicked: {
-                if (stackView.depth > 1) {
+                if(stackView.top==="RegisterScreenForm.ui.qml")
                     stackView.pop()
-
-                } else {
+                else
                     drawer.open()
-                }
+
             }
         }
 
@@ -43,6 +43,7 @@ ApplicationWindow {
                 text: qsTr("Page 1")
                 width: parent.width
                 onClicked: {
+                    stackView.pop()
                     stackView.push("Page1Form.ui.qml")
                     drawer.close()
                 }
@@ -51,6 +52,7 @@ ApplicationWindow {
                 text: qsTr("Page 2")
                 width: parent.width
                 onClicked: {
+                    stackView.pop()
                     stackView.push("Page2Form.ui.qml")
                     drawer.close()
                 }
