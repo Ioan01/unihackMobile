@@ -1,7 +1,13 @@
 #include "query.h"
 
 #include <QSqlRecord>
-
+#include <QJsonObject>
+#include <QSql>
+#include <QSqlDatabase>
+#include <QSqlQuery>
+#include <QString>
+#include <QSqlDriver>
+#include <QSqlRecord>
 
 
 void query::run()
@@ -10,7 +16,7 @@ void query::run()
     QSqlQuery que = db->exec(QString(comm));
     int i = 0;
     QString buffer="{\n";
-    QSqlDriver* driver = database.driver();
+    QSqlDriver* driver = db->driver();
     while(que.next())
     {
         i=0;
