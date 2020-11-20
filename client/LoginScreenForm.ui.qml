@@ -96,4 +96,8 @@ Page {
             }
         }
     }
+    Connections{
+    target:button1
+    onClicked: stackView.push("RegisterScreenForm.ui.qml")
+    }
 }
