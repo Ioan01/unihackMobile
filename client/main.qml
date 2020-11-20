@@ -43,6 +43,7 @@ ApplicationWindow {
 
             ItemDelegate {
                 text: qsTr("Profile")
+<<<<<<< HEAD
                 width: parent.width
                 onClicked: {
                     stackView.pop()
@@ -74,6 +75,45 @@ ApplicationWindow {
                 onClicked: {
                     stackView.pop()
                     stackView.push("GradesForm.ui.qml")
+=======
+                width: parent.width
+                onClicked: {
+                    stackView.pop()
+                    stackView.push("ProfileForm.ui.qml")
+>>>>>>> ACW--main
+                    drawer.close()
+                }
+            }
+            ItemDelegate {
+<<<<<<< HEAD
+                text: qsTr("Settings")
+                width: parent.width
+                onClicked: {
+                    stackView.pop()
+=======
+                text: qsTr("Lectures")
+                width: parent.width
+                onClicked: {
+                    stackView.pop()
+                    stackView.push("LecturesForm.ui.qml")
+                    drawer.close()
+                }
+            }
+            ItemDelegate {
+                text: qsTr("Exams")
+                width: parent.width
+                onClicked: {
+                    stackView.pop()
+                    stackView.push("ExamsForm.ui.qml")
+                    drawer.close()
+                }
+            }
+            ItemDelegate {
+                text: qsTr("Grades")
+                width: parent.width
+                onClicked: {
+                    stackView.pop()
+                    stackView.push("GradesForm.ui.qml")
                     drawer.close()
                 }
             }
@@ -82,6 +122,7 @@ ApplicationWindow {
                 width: parent.width
                 onClicked: {
                     stackView.pop()
+>>>>>>> ACW--main
                     stackView.push("SettingsForm.ui.qml")
                     drawer.close()
                 }

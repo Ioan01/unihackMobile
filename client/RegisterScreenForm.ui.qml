@@ -121,8 +121,13 @@ Page {
     }
     Connections {
         target: button1
+<<<<<<< HEAD
         onClicked: {stackView.push("HomeForm.ui.qml")
             stackView.push("HomeForm.ui.qmll") //this pushes twice so that I can keep the toolbar hidden before logging in
+=======
+        onClicked: {stackView.push("ProfileForm.ui.qml")
+            stackView.push("ProfileForm.ui.qml") //this pushes twice so that I can keep the toolbar hidden before logging in
+>>>>>>> ACW--main
 
         }
     }
