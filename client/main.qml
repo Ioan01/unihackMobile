@@ -10,7 +10,7 @@ ApplicationWindow {
 
     header: ToolBar {
         contentHeight: toolButton.implicitHeight
-
+        visible: stackView.depth >1 ? 1 :0 // + sa verifice si pentru sign in
         ToolButton {
             id: toolButton
             text: stackView.depth > 1 ? "\u25C0" : "\u2630"
@@ -18,6 +18,7 @@ ApplicationWindow {
             onClicked: {
                 if (stackView.depth > 1) {
                     stackView.pop()
+
                 } else {
                     drawer.open()
                 }
@@ -59,7 +60,9 @@ ApplicationWindow {
 
     StackView {
         id: stackView
-        initialItem: "HomeForm.ui.qml"
+        initialItem: "LoginScreenForm.ui.qml"
         anchors.fill: parent
     }
+
+
 }
