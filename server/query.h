@@ -9,6 +9,8 @@
 #include <QVariant>
 #include <QJsonObject>
 #include <QJsonValue>
+#include <QVariantMap>
+
 class query : public QObject,public QRunnable
 {
     Q_OBJECT
@@ -16,11 +18,13 @@ class query : public QObject,public QRunnable
     char *comm;
 private:
     void converToJson();
+
 signals:
 
 public:
 
     void run() override;
+    void start();
     query(QSqlDatabase *db,char *query);
 };
 

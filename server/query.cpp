@@ -1,21 +1,24 @@
 #include "query.h"
 
+#include <QSqlRecord>
+
 
 
 void query::run()
 {
+    qDebug() << "Query = " << comm;
     QSqlQuery que = db->exec(QString(comm));
 
-    while (que.next()) {
-        qDebug() << que.value(0).toJsonObject();
-    }
 
+}
 
-
+void query::start()
+{
+    // do stuff with query
 }
 
 query::query(QSqlDatabase *db, char *query) : db(db), comm(query)
 {
 
-    QThreadPool::globalInstance()->start(this);
+
 }

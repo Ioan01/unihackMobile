@@ -5,6 +5,8 @@
 #include <QRunnable>
 #include <QThreadPool>
 #include <QTcpSocket>
+#include <QHostAddress>
+#include <QtConcurrent/QtConcurrentRun>
 
 
 
@@ -14,8 +16,9 @@ class connection : public QObject,public QRunnable
     unsigned int index;
     QTcpSocket *sock;
     QByteArray arr;
-
     QByteArray* externalArr;
+
+   // QFuture<void>
     // 0 to read, 1 to write
     bool runMode = 0;
 
@@ -23,12 +26,14 @@ class connection : public QObject,public QRunnable
     size_t toRead = 0;
 signals:
     void disconnected(unsigned int id);
-    void receivedQuery(QByteArray *query);
+    void receivedQuery(QByteArray *query,unsigned int selfId);
+
 public slots:
     void startRead();
     void onDisconnect();
 
     void sendQueryData(QByteArray *array);
+
 public:
     void read();
     void write();

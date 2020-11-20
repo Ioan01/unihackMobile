@@ -2,7 +2,10 @@
 
 void connection::startRead()
 {
-    QThreadPool::globalInstance()->tryStart(this);
+    qDebug() << "Got new packet";
+    runMode = 0;
+    //QThreadPool::globalInstance()->start(this);
+    run();
 }
 
 void connection::onDisconnect()
@@ -15,22 +18,27 @@ void connection::onDisconnect()
 void connection::sendQueryData(QByteArray *array)
 {
     externalArr = array;
+    runMode = 1;
+    run();
+    //QThreadPool::globalInstance()->tryStart(this);
 }
+
 
 void connection::read()
 {
-    sock->read((char*)&toRead,sizeof(size_t));
 
     while (sock->bytesAvailable())
     {
+        sock->read((char*)&toRead,sizeof(size_t));
         while(arr.size() < toRead)
         {
             toRead -= sock->bytesAvailable();
             arr.append(sock->readAll());
         }
     }
-    if (arr.size())
-        emit receivedQuery(&arr);
+    qDebug() << arr.size();
+    if (arr.size() > 0)
+        emit receivedQuery(&arr,index);
 }
 
 void connection::write()
@@ -53,6 +61,7 @@ void connection::run()
 
 connection::connection(const unsigned int index, QTcpSocket *sock, QObject *parent) :QObject(parent),index(index),sock(sock)
 {
+    qDebug() << "New connection from " << sock->peerAddress() << " with index " << index;
     sock->connect(sock,&QTcpSocket::disconnected,this,&connection::onDisconnect);
     sock->connect(sock,&QTcpSocket::readyRead,this,&connection::startRead);
 }
