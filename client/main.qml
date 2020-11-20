@@ -63,6 +63,10 @@ ApplicationWindow {
         initialItem: "LoginScreenForm.ui.qml"
         anchors.fill: parent
     }
+    Connections{
+    target:button1
+    onClicked: stackView.push("RegisterScreenForm.ui.qml")
+    }
 
 
 }
