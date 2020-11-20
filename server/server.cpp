@@ -34,11 +34,23 @@ void server::onDisconnect(unsigned int id)
 
 void server::handleQuery(QByteArray *dat,unsigned int id)
 {
-    query *_query = new query(&this->database,dat->data());
+    query *_query = new query(&this->database,dat->data(),id);
     QFuture<void>dataQuery = QtConcurrent::run(_query,&query::run);
+    connect(_query,&query::finishedParsing,this,&server::sendJson);
 
-    dataQuery.waitForFinished();
 
 
     //_query= new query(&this->database,dat->data());
+}
+
+void server::sendJson(QByteArray *json, unsigned int clientId,void *queryPtr)
+{
+    for (uint32_t i=0;i<connections.size();i++)
+        if (connections[i]->clientId() == clientId)
+        {
+            connections[i]->sendQueryData(json);
+            break;
+        }
+
+    delete (query*)queryPtr;
 }

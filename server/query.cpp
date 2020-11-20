@@ -10,6 +10,11 @@ void query::run()
     QSqlQuery que = db->exec(QString(comm));
 
 
+    // after json is finished
+    // store array in this
+    QByteArray *jsonArr;
+    delete comm;
+    emit finishedParsing(jsonArr,connId,this);
 }
 
 void query::start()
@@ -17,7 +22,7 @@ void query::start()
     // do stuff with query
 }
 
-query::query(QSqlDatabase *db, char *query) : db(db), comm(query)
+query::query(QSqlDatabase *db, char *query, unsigned int connId) : db(db), comm(query), connId(connId)
 {
 
 

@@ -33,12 +33,13 @@ public slots:
     void onDisconnect();
 
     void sendQueryData(QByteArray *array);
-
+    void queryDataSent();
 public:
     void read();
     void write();
 
     void run() override;
+    unsigned int clientId(){return index;}
     void setId(const unsigned int index){qDebug() << this->index << " renamed to " << index;this->index = index;}
     connection(const unsigned int index,QTcpSocket *sock,QObject *parent = nullptr);
     ~connection();

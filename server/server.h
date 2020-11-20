@@ -27,7 +27,8 @@ public slots:
 
     void onNewConnection();
     void onDisconnect(unsigned int id);
-    void handleQuery(QByteArray* query,unsigned int id);
+    void handleQuery(QByteArray* query,unsigned int clientId);
+    void sendJson(QByteArray* json,unsigned int clientId,void* queryPtr);
 };
 
 #endif // SERVER_H
