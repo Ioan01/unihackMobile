@@ -7,7 +7,15 @@ server::server(QObject *parent) : QObject(parent)
     QThreadPool::globalInstance()->setMaxThreadCount(THREAD_COUNT);
     QSqlDatabase database = QSqlDatabase::addDatabase("QSQLITE");
     database.setDatabaseName(DB_LOC);
-    database.open();
+    if(database.open())
+    {
+        qDebug()<<"connection successful";
+    }
+    else
+    {
+        //qDebug()<<"failed to connect to database";
+        throw "failed to connect to database";
+    }
     _server = new QTcpServer(this);
 
     _server->listen(QHostAddress::Any,2020);

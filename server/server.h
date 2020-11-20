@@ -10,7 +10,7 @@
 #include "query.h"
 
 
-#define DB_LOC "C:/data"
+#define DB_LOC "C:/database/sqlite.db"
 
 #define THREAD_COUNT 200
 
