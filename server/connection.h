@@ -18,7 +18,7 @@ class connection : public QObject,public QRunnable
     QByteArray arr;
     QByteArray* externalArr;
 
-   // QFuture<void>
+    QFuture<void>dataHandle;
     // 0 to read, 1 to write
     bool runMode = 0;
 

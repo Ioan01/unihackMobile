@@ -5,7 +5,8 @@ void connection::startRead()
     qDebug() << "Got new packet";
     runMode = 0;
     //QThreadPool::globalInstance()->start(this);
-    run();
+    dataHandle.waitForFinished();
+    dataHandle = QtConcurrent::run(this,&connection::run);
 }
 
 void connection::onDisconnect()
@@ -19,8 +20,8 @@ void connection::sendQueryData(QByteArray *array)
 {
     externalArr = array;
     runMode = 1;
-    run();
-    //QThreadPool::globalInstance()->tryStart(this);
+    dataHandle.waitForFinished();
+    dataHandle = QtConcurrent::run(this,&connection::run);
 }
 
 
@@ -39,6 +40,7 @@ void connection::read()
     qDebug() << arr.size();
     if (arr.size() > 0)
         emit receivedQuery(&arr,index);
+   // sock->flush()
 }
 
 void connection::write()
