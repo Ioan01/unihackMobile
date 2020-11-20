@@ -14,32 +14,24 @@ Page {
 
         transformOrigin: Item.Center
 
-        Text {
-            id: text1
-            x: 128
-            y: 14
-            text: qsTr("Login")
-            font.pixelSize: 48
-        }
-
         TextField {
             id: textField
-            x: 86
-            y: 213
+            x: 91
+            y: 155
             placeholderText: qsTr("Text Field")
         }
 
         TextField {
             id: textField1
-            x: 85
-            y: 338
+            x: 90
+            y: 280
             placeholderText: qsTr("Text Field")
         }
 
         Label {
             id: label
-            x: 111
-            y: 165
+            x: 116
+            y: 107
             width: 179
             height: 42
             text: qsTr("Username")
@@ -48,56 +40,54 @@ Page {
 
         Label {
             id: label1
-            x: 111
-            y: 290
+            x: 116
+            y: 232
             width: 179
             height: 42
             text: qsTr("Password")
             font.pointSize: 24
         }
 
-        Button {
-            id: button
-            x: 140
-            y: 497
+        Image {
+            id: sign_in_button
+            x: 129
+            y: 452
             width: 124
             height: 55
-            visible: true
-            text: qsTr("Button")
-            display: AbstractButton.IconOnly
-
-            Image {
-                id: quit_button
-                anchors.fill: parent
-                source: "quit_button.png"
-                anchors.bottomMargin: 0
-                fillMode: Image.PreserveAspectFit
-            }
+            source: "sign_in_button.png"
+            fillMode: Image.PreserveAspectFit
         }
 
-        Button {
-            id: button1
-            x: 138
-            y: 424
-            width: 124
-            height: 55
-            visible: true
-            text: qsTr("Button")
-            display: AbstractButton.IconOnly
+        Image {
+            id: quit_button
+            x: 140
+            y: 497
+            anchors.fill: parent
+            source: "quit_button.png"
+            anchors.rightMargin: 147
+            anchors.leftMargin: 128
+            anchors.topMargin: 513
+            anchors.bottomMargin: 8
+            fillMode: Image.PreserveAspectFit
+        }
 
-            Image {
-                id: sign_in_button
-                x: 0
-                y: 0
-                width: 124
-                height: 55
-                source: "sign_in_button.png"
-                fillMode: Image.PreserveAspectFit
-            }
+        Image {
+            id: login_button
+            x: 75
+            y: 361
+            width: 233
+            height: 69
+            source: "login_button.png"
+            fillMode: Image.PreserveAspectFit
         }
     }
     Connections{
-    target:button1
-    onClicked: stackView.push("RegisterScreenForm.ui.qml")
+        target: sign_in_button
+        onClicked: stackView.push("RegisterScreenForm.ui.qml")
     }
+    /*Connections{
+        target:login_button
+        onClicked:stackView.push("HomeForm.ui.qml")
+    }*/
+
 }

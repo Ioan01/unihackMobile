@@ -61,25 +61,6 @@ Page {
         }
 
         Button {
-            id: button
-            x: 140
-            y: 497
-            width: 124
-            height: 55
-            visible: true
-            text: qsTr("Button")
-            display: AbstractButton.IconOnly
-
-            Image {
-                id: quit_button
-                anchors.fill: parent
-                source: "quit_button.png"
-                anchors.bottomMargin: 0
-                fillMode: Image.PreserveAspectFit
-            }
-        }
-
-        Button {
             id: button1
             x: 138
             y: 424
