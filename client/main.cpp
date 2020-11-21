@@ -19,6 +19,10 @@ int main(int argc, char *argv[])
             QCoreApplication::exit(-1);
     }, Qt::QueuedConnection);
 
+    loginScreen login;
+    engine.rootContext()->setContextProperty("login",&login);
+
+
     engine.load(url);
     network net(&app);
     return app.exec();
