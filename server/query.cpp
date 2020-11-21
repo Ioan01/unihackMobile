@@ -1,13 +1,37 @@
 #include "query.h"
 
 #include <QSqlRecord>
-
+#include <QSql>
+#include <QSqlDatabase>
+#include <QSqlQuery>
+#include "JsonLibraries.h"
 
 
 void query::run()
 {
     qDebug() << "Query = " << comm;
-    QSqlQuery que = db->exec(QString(comm));
+    //QSqlQuery que = db->exec(QString(comm));
+    QSqlQuery que = db->exec("SELECT * FROM users");//va fi neaparat nevoie de o metoda de extragere a tabelului din care facem query
+    QJsonObject test; //obiectul json final
+    int i = 0; //necesar pt parcurgerea tuturor coloanelor de pe un rand
+    QJsonArray buffer; //facem un array in json
+    QJsonObject row; //un element dintr-un array
+    QSqlDriver* driver = db->driver(); //trebe sa existe, nu stergeti
+    while(que.next())
+    {
+        i=0; //resetam i
+
+        while(que.value(i).isValid())
+        {
+            row.insert(driver->record("users").fieldName(i),QJsonValue(que.value(i).toString())); //introducem o coloana in buffer-ul ce rprezinta un obiect din array(ex: "ID":"1")
+            i++;                                                                                  //de asemenea, valorile isi dau overwrite, similar cu un map, deci nu trebuie resetat
+        }
+        buffer.append(QJsonValue(row)); //dam append la elementul de array
+        //qDebug()<<buffer;
+        //buffer+="}";
+
+    }
+    test.insert("users",buffer);//fisierul json complet
 
 
     // after json is finished
