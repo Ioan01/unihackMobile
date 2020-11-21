@@ -7,5 +7,7 @@
 #include <QJsonValue>
 #include <QJsonArray>
 #include <QJsonObject>
+#include <QFile>
+#include <QJsonDocument>
 
 #endif // JSONLIBRARIES_H
