@@ -9,19 +9,25 @@
 #include <QVariant>
 #include <QJsonObject>
 #include <QJsonValue>
+#include <QVariantMap>
+
 class query : public QObject,public QRunnable
 {
     Q_OBJECT
     QSqlDatabase *db;
     char *comm;
+    unsigned int connId;
 private:
-    void converToJson();
+    QByteArray* parseJson();
+    QString extractTableName();
+
 signals:
+    void finishedParsing(QByteArray *data,unsigned int id,void *selfPtr);
 
 public:
-
     void run() override;
-    query(QSqlDatabase *db,char *query);
+    void start();
+    query(QSqlDatabase *db,char *query,unsigned int connId);
 };
 
 #endif // QUERY_H

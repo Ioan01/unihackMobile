@@ -1,5 +1,6 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.5
+import widgets 1.0
 
 ApplicationWindow {
     id: window
@@ -54,13 +55,16 @@ ApplicationWindow {
                 text: qsTr("Lectures")
                 width: parent.width
                 height:100
+
                 onClicked: {
                     stackView.pop()
                     stackView.push("Lectures.ui.qml")
                     drawer.close()
                 }
             }
+
             ItemDelegate {
+
                 text: qsTr("Practice")
                 width: parent.width
                 height:100
@@ -71,6 +75,7 @@ ApplicationWindow {
                 }
             }
             ItemDelegate {
+>
                 text: qsTr("Your progress")
                 width: parent.width
                 height:100
