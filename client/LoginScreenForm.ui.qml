@@ -98,9 +98,11 @@ Page {
     Connections {
         target: button2
         onClicked: {
-            stackView.push("Page1Form.ui.qml")
+
+            stackView.push("Lectures.ui.qml")
             stackView.push(
-                        "Page1Form.ui.qml") //this pushes twice so that I can keep the toolbar hidden before logging in
+                        "Lectures.ui.qml") //this pushes twice so that I can keep the toolbar hidden before logging in
+
         }
     }
 }
