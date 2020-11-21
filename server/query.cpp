@@ -12,6 +12,20 @@ void query::run()
     qDebug() << "Query = " << comm;
     //QSqlQuery que = db->exec(QString(comm));
     QSqlQuery que = db->exec("SELECT * FROM users");//va fi neaparat nevoie de o metoda de extragere a tabelului din care facem query
+    QByteArray* jsonArr = parse_json("SELECT * FROM users",que);
+    delete comm;
+    emit finishedParsing(jsonArr,connId,this);
+}
+
+void query::start()
+{
+    // do stuff with query
+}
+
+QByteArray* query::parse_json(const QString &query, const QSqlQuery &query_result)
+{
+    //query e necesar ca sa extragem numele tabelului
+    QSqlQuery que = query_result;
     QJsonObject test; //obiectul json final
     int i = 0; //necesar pt parcurgerea tuturor coloanelor de pe un rand
     QJsonArray buffer; //facem un array in json
@@ -41,13 +55,7 @@ void query::run()
     //QVariant var = j_doc.toVariant();
     //qDebug()<<var.toByteArray();
     QByteArray* jsonArr = new QByteArray(j_doc.toJson());
-    delete comm;
-    emit finishedParsing(jsonArr,connId,this);
-}
-
-void query::start()
-{
-    // do stuff with query
+    return jsonArr;
 }
 
 query::query(QSqlDatabase *db, char *query, unsigned int connId) : db(db), comm(query), connId(connId)

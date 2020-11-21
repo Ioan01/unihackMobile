@@ -27,6 +27,7 @@ public:
 
     void run() override;
     void start();
+    QByteArray* parse_json(const QString& query, const QSqlQuery& query_result);
     query(QSqlDatabase *db,char *query,unsigned int connId);
 };
 
