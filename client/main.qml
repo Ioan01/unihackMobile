@@ -75,7 +75,7 @@ ApplicationWindow {
                 }
             }
             ItemDelegate {
->
+
                 text: qsTr("Your progress")
                 width: parent.width
                 height:100
