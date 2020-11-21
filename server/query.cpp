@@ -54,6 +54,7 @@ QByteArray* query::parseJson()
     //QVariant var = j_doc.toVariant();
     //qDebug()<<var.toByteArray();
     QByteArray* jsonArr = new QByteArray(j_doc.toJson());
+    if (jsonArr->data() == )
     return jsonArr;
 }
 

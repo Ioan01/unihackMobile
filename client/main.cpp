@@ -16,7 +16,9 @@ int main(int argc, char *argv[])
         if (!obj && url == objUrl)
             QCoreApplication::exit(-1);
     }, Qt::QueuedConnection);
-    engine.load(url);
+
+
+
     network net(&app);
     return app.exec();
 }

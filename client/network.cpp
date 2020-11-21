@@ -1,7 +1,5 @@
 #include "network.h"
 
-
-
 void network::read()
 {
     QByteArray*arr = new QByteArray;
@@ -32,15 +30,14 @@ void network::write()
     {
 
     }
+
+    emit sentData();
 }
 
 void network::onConnect()
 {
     qDebug() << "Connected to " << sock->peerAddress();
     connected = 1;
-    size_t size = 28;
-    QByteArray *arr = new QByteArray();
-
 }
 
 void network::onDisconnect()
@@ -72,6 +69,8 @@ void network::receiveData()
     running = QtConcurrent::run(this,&network::run);
 }
 
+
+
 void network::run()
 {
     if (!mode)
@@ -87,5 +86,9 @@ network::network(QObject *parent) : QObject(parent)
     connect(sock,&QTcpSocket::readyRead,this,&network::receiveData);
     // connect idk .....this,network,senddata
     onDisconnect();
+
+    connect(&manager,&queryManager::newQuery,this,&network::sendData);
+    connect(this,&network::sentData,&manager,&queryManager::networkFinished);
+    connect(this,&network::receivedData,&manager,&queryManager::_queryResponse);
     //QThreadPool::globalInstance()->start(this);
 }

@@ -9,7 +9,8 @@ CONFIG += c++11
 
 SOURCES += \
         main.cpp \
-        network.cpp
+        network.cpp \
+        querymanager.cpp
 
 RESOURCES += qml.qrc
 
@@ -25,6 +26,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
-    network.h
+    network.h \
+    querymanager.h
 
 ANDROID_ABIS = armeabi-v7a
