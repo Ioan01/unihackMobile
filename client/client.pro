@@ -11,7 +11,8 @@ SOURCES += \
         loginscreen.cpp \
         main.cpp \
         network.cpp \
-        querymanager.cpp
+        querymanager.cpp \
+        registerscreen.cpp
 
 RESOURCES += qml.qrc
 
@@ -32,6 +33,7 @@ HEADERS += \
     JsonLibraries.h \
     loginscreen.h \
     querymanager.h \
-    network.h
+    network.h \
+    registerscreen.h
 
 ANDROID_ABIS = armeabi-v7a
