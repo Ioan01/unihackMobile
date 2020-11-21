@@ -1,6 +1,6 @@
 QT += quick
 QT += network
-QT += qml qqml
+QT += qml
 CONFIG += c++11 qmltypes
 
 # You can make your code fail to compile if it uses deprecated APIs.
@@ -15,7 +15,9 @@ SOURCES += \
 RESOURCES += qml.qrc
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
-QML_IMPORT_PATH =
+CONFIG += qmltypes
+QML_IMPORT_NAME = io.qt.examples.backend
+QML_IMPORT_MAJOR_VERSION = 1
 
 # Additional import path used to resolve QML modules just for Qt Quick Designer
 QML_DESIGNER_IMPORT_PATH =
