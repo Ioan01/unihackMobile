@@ -24,7 +24,7 @@ void connection::onDisconnect()
 void connection::sendQueryData(char *array)
 {
 
-    while (!finishedWriting)
+    while (!finishedWriting && !lostConnection)
     {
 
     }

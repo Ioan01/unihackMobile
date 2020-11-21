@@ -5,7 +5,7 @@
 server::server(QObject *parent) : QObject(parent)
 {
     QThreadPool::globalInstance()->setMaxThreadCount(THREAD_COUNT);
-    QSqlDatabase database = QSqlDatabase::addDatabase("QSQLITE");
+    database = QSqlDatabase::addDatabase("QSQLITE");
     database.setDatabaseName("C:\\database\\sqlite.db");
     database.open();
     _server = new QTcpServer(this);
@@ -16,6 +16,7 @@ server::server(QObject *parent) : QObject(parent)
 
 void server::onNewConnection()
 {
+   qDebug() << "New connection should follow";
    connections.push_back(new connection(connections.size(),_server->nextPendingConnection(),this));
    connect(connections.back(),&connection::disconnected,this,&server::onDisconnect);
    connect(connections.back(),&connection::receivedQuery,this,&server::handleQuery);
@@ -24,12 +25,8 @@ void server::onNewConnection()
 void server::onDisconnect(unsigned int id)
 {
     connections[id]->deleteLater();
-    for (uint32_t i=id+1;i<connections.size();i++)
-    {
-        connections[i]->setId(i-1);
-    }
 
-    connections.erase(connections.begin() + id);
+    //connections.erase(connections.begin() + id);
 }
 
 void server::handleQuery(QByteArray *dat,unsigned int id)

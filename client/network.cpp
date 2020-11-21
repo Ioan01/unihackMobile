@@ -36,10 +36,7 @@ void network::onConnect()
     connected = 1;
     size_t size = 27;
 
-    sock->write((char*)&size,sizeof(size_t));
-    sock->write("SELECT username FROM users");
 
-    sock->waitForBytesWritten();
 }
 
 void network::onDisconnect()
