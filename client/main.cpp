@@ -1,5 +1,7 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
+#include "network.h"
+
 
 int main(int argc, char *argv[])
 {
@@ -15,6 +17,6 @@ int main(int argc, char *argv[])
             QCoreApplication::exit(-1);
     }, Qt::QueuedConnection);
     engine.load(url);
-
+    network net(&app);
     return app.exec();
 }

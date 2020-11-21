@@ -52,7 +52,9 @@ void connection::read()
         {
             toRead -= sock->bytesAvailable();
             arr.append(sock->readAll());
+            qDebug() << "stuck";
         }
+        qDebug() << "stuck";
     }
     qDebug() << "Packet: " << arr;
     if (arr.size() > 0)
@@ -86,7 +88,6 @@ void connection::run()
 
 connection::connection(const unsigned int index, QTcpSocket *sock, QObject *parent) :QObject(parent),index(index),sock(sock)
 {
-
     qDebug() << "New connection from " << sock->peerAddress() << " with index " << index;
     sock->connect(sock,&QTcpSocket::disconnected,this,&connection::onDisconnect);
     sock->connect(sock,&QTcpSocket::readyRead,this,&connection::startRead);
