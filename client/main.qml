@@ -3,24 +3,26 @@ import QtQuick.Controls 2.5
 
 ApplicationWindow {
     id: window
-    width: 640
-    height: 480
+    width: 400
+    height: 600
     visible: true
     title: qsTr("Stack")
 
     header: ToolBar {
+        id:toolBar
         contentHeight: toolButton.implicitHeight
+        visible: stackView.depth >2 ? 1 : 0 // + sa verifice si pentru sign in
 
         ToolButton {
             id: toolButton
-            text: stackView.depth > 1 ? "\u25C0" : "\u2630"
+            text: "\u2630"
             font.pixelSize: Qt.application.font.pixelSize * 1.6
             onClicked: {
-                if (stackView.depth > 1) {
+                if(stackView.top==="RegisterScreenForm.ui.qml")
                     stackView.pop()
-                } else {
+                else
                     drawer.open()
-                }
+
             }
         }
 
@@ -34,23 +36,94 @@ ApplicationWindow {
         id: drawer
         width: window.width * 0.66
         height: window.height
+        interactive: stackView.depth >2 ? 1 : 0
 
         Column {
             anchors.fill: parent
 
             ItemDelegate {
-                text: qsTr("Page 1")
+                text: qsTr("Profile")
+<<<<<<< HEAD
                 width: parent.width
                 onClicked: {
-                    stackView.push("Page1Form.ui.qml")
+                    stackView.pop()
+                    stackView.push("ProfileForm.ui.qml")
                     drawer.close()
                 }
             }
             ItemDelegate {
-                text: qsTr("Page 2")
+                text: qsTr("Lectures")
                 width: parent.width
                 onClicked: {
-                    stackView.push("Page2Form.ui.qml")
+                    stackView.pop()
+                    stackView.push("LecturesForm.ui.qml")
+                    drawer.close()
+                }
+            }
+            ItemDelegate {
+                text: qsTr("Exams")
+                width: parent.width
+                onClicked: {
+                    stackView.pop()
+                    stackView.push("ExamsForm.ui.qml")
+                    drawer.close()
+                }
+            }
+            ItemDelegate {
+                text: qsTr("Grades")
+                width: parent.width
+                onClicked: {
+                    stackView.pop()
+                    stackView.push("GradesForm.ui.qml")
+=======
+                width: parent.width
+                onClicked: {
+                    stackView.pop()
+                    stackView.push("ProfileForm.ui.qml")
+>>>>>>> ACW--main
+                    drawer.close()
+                }
+            }
+            ItemDelegate {
+<<<<<<< HEAD
+                text: qsTr("Settings")
+                width: parent.width
+                onClicked: {
+                    stackView.pop()
+=======
+                text: qsTr("Lectures")
+                width: parent.width
+                onClicked: {
+                    stackView.pop()
+                    stackView.push("LecturesForm.ui.qml")
+                    drawer.close()
+                }
+            }
+            ItemDelegate {
+                text: qsTr("Exams")
+                width: parent.width
+                onClicked: {
+                    stackView.pop()
+                    stackView.push("ExamsForm.ui.qml")
+                    drawer.close()
+                }
+            }
+            ItemDelegate {
+                text: qsTr("Grades")
+                width: parent.width
+                onClicked: {
+                    stackView.pop()
+                    stackView.push("GradesForm.ui.qml")
+                    drawer.close()
+                }
+            }
+            ItemDelegate {
+                text: qsTr("Settings")
+                width: parent.width
+                onClicked: {
+                    stackView.pop()
+>>>>>>> ACW--main
+                    stackView.push("SettingsForm.ui.qml")
                     drawer.close()
                 }
             }
@@ -59,7 +132,9 @@ ApplicationWindow {
 
     StackView {
         id: stackView
-        initialItem: "HomeForm.ui.qml"
+        initialItem: "LoginScreenForm.ui.qml"
         anchors.fill: parent
     }
+
+
 }

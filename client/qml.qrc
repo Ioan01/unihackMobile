@@ -2,8 +2,19 @@
     <qresource prefix="/">
         <file>main.qml</file>
         <file>HomeForm.ui.qml</file>
-        <file>Page1Form.ui.qml</file>
-        <file>Page2Form.ui.qml</file>
+        <file>ProfileForm.ui.qml</file>
+        <file>LecturesForm.ui.qml</file>
         <file>qtquickcontrols2.conf</file>
+        <file>LoginScreen.qml</file>
+        <file>LoginScreenForm.ui.qml</file>
+        <file>quit_button.png</file>
+        <file>sign_in_button.png</file>
+        <file>RegisterScreen.qml</file>
+        <file>RegisterScreenForm.ui.qml</file>
+        <file>login_button.png</file>
+        <file>back_button.png</file>
+        <file>ExamsForm.ui.qml</file>
+        <file>GradesForm.ui.qml</file>
+        <file>SettingsForm.ui.qml</file>
     </qresource>
 </RCC>
