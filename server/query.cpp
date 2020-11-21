@@ -10,7 +10,7 @@
 void query::run()
 {
     qDebug() << "Query = " << comm;
-    QByteArray* jsonArr = parse_json();
+    QByteArray* jsonArr = parseJson();
     delete comm;
     emit finishedParsing(jsonArr,connId,this);
 }
