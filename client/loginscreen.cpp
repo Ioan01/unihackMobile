@@ -21,7 +21,7 @@ void loginScreen::deactivate()
 void loginScreen::login(QString username, QString password)
 {
     QString loginQuery;
-
+    loginQuery = QString("SELECT username, password FROM users WHERE username=""") + username + QString(""" AND """) + password +QString(""";");
     emit sendQuery(loginQuery);
 }
 
