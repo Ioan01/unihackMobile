@@ -17,7 +17,7 @@ void network::read()
             arr->append(sock->readAll());
         }
     }
-
+    qDebug() << "arr:" << *arr;
     if (arr->size() == packetSize)
         emit receivedData(arr);
 }
@@ -60,6 +60,7 @@ void network::sendData(QByteArray *array)
     if (running.isRunning())
         running.waitForFinished();
     mode = 1;
+    toWrite = array->data();
     running = QtConcurrent::run(this,&network::run);
 }
 
@@ -73,18 +74,10 @@ void network::receiveData()
 
 void network::run()
 {
-    static bool firsRun = 1;
 
-
-    if (firsRun)
-        onDisconnect();
-    else
-    {
-        if (!mode)
-            read();
-        else write();
-    }
-
+    if (!mode)
+        read();
+    else write();
 }
 
 network::network(QObject *parent) : QObject(parent)

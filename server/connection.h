@@ -17,7 +17,7 @@ class connection : public QObject,public QRunnable
     QTcpSocket *sock;
     bool lostConnection = 0;
     QByteArray arr;
-    QByteArray* externalArr;
+    QByteArray externalArr;
 
     QFuture<void>dataHandle;
     // 0 to read, 1 to write
@@ -34,11 +34,12 @@ public slots:
     void startRead();
     void onDisconnect();
 
-    void sendQueryData(QByteArray *array);
-    void queryDataSent();
+    void sendQueryData(char *array);
+
 public:
     void read();
     void write();
+    void queryDataSent();
 
     void run() override;
     unsigned int clientId(){return index;}

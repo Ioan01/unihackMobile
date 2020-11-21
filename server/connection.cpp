@@ -21,22 +21,24 @@ void connection::onDisconnect()
 }
 
 
-void connection::sendQueryData(QByteArray *array)
+void connection::sendQueryData(char *array)
 {
+
     while (!finishedWriting)
     {
 
     }
-    externalArr = array;
+    externalArr.append(array);
+
     runMode = 1;
-    if (dataHandle.isRunning())
-        dataHandle.waitForFinished();
-    dataHandle = QtConcurrent::run(this,&connection::run);
+   // if (dataHandle.isRunning())
+    //    dataHandle.waitForFinished();
+    run();
 }
 
 void connection::queryDataSent()
 {
-    delete externalArr;
+    externalArr.clear();
 }
 
 
@@ -61,10 +63,14 @@ void connection::read()
 void connection::write()
 {
     finishedWriting = 0;
-    sock->write(*externalArr);
+    size_t size = externalArr.size();
+    sock->write((char*)&size,sizeof(size_t));
+    sock->write(externalArr);
+    qDebug() << "ext:" << externalArr;
+
     while (sock->bytesToWrite() && !lostConnection)
     {
-
+        sock->flush();
     }
     queryDataSent();
     finishedWriting = 1;
@@ -80,6 +86,7 @@ void connection::run()
 
 connection::connection(const unsigned int index, QTcpSocket *sock, QObject *parent) :QObject(parent),index(index),sock(sock)
 {
+
     qDebug() << "New connection from " << sock->peerAddress() << " with index " << index;
     sock->connect(sock,&QTcpSocket::disconnected,this,&connection::onDisconnect);
     sock->connect(sock,&QTcpSocket::readyRead,this,&connection::startRead);

@@ -6,6 +6,8 @@
 #include <QThreadPool>
 #include <QtConcurrent/QtConcurrentRun>
 #include <QHostAddress>
+
+
 class network : public QObject, public QRunnable
 {
     Q_OBJECT
@@ -14,6 +16,7 @@ class network : public QObject, public QRunnable
     bool connected = 0;
 
 
+    char *toWrite = nullptr;
     // 0 for read, 1 for write
     bool mode = 0;
 private:
@@ -32,8 +35,8 @@ public slots:
 
     void receiveData();
 public:
-
     void run() override;
+
     network(QObject* parent);
 };
 

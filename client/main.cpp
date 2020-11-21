@@ -16,5 +16,7 @@ int main(int argc, char *argv[])
     }, Qt::QueuedConnection);
     engine.load(url);
     network net(nullptr);
+    QByteArray arr = "SELECT username FROM users;";
+    net.sendData(&arr);
     return app.exec();
 }

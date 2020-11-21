@@ -45,10 +45,11 @@ void server::handleQuery(QByteArray *dat,unsigned int id)
 
 void server::sendJson(QByteArray *json, unsigned int clientId,void *queryPtr)
 {
+
     for (uint32_t i=0;i<connections.size();i++)
         if (connections[i]->clientId() == clientId)
         {
-            connections[i]->sendQueryData(json);
+            connections[i]->sendQueryData(json->data());
             break;
         }
 
