@@ -3,8 +3,9 @@ import QtQuick.Controls 2.5
 
 ApplicationWindow {
     id: window
-    width: 640
-    height: 480
+    width: 400
+    height: 900
+
     visible: true
     title: qsTr("Stack")
 
@@ -14,7 +15,7 @@ ApplicationWindow {
         visible: stackView.depth >2 ? 1 : 0 // + sa verifice si pentru sign in
         ToolButton {
             id: toolButton
-            text: "\u2630"
+            text: "Menu"
             font.pixelSize: Qt.application.font.pixelSize * 1.6
             onClicked: {
                 if(stackView.top==="RegisterScreenForm.ui.qml")
@@ -45,7 +46,7 @@ ApplicationWindow {
                 height:100
                 onClicked: {
                     stackView.pop()
-                    stackView.push("Page1Form.ui.qml")
+                    stackView.push("ProfileForm.ui.qml")
                     drawer.close()
                 }
             }
@@ -55,7 +56,7 @@ ApplicationWindow {
                 height:100
                 onClicked: {
                     stackView.pop()
-                    stackView.push("Page2Form.ui.qml")
+                    stackView.push("Lectures.ui.qml")
                     drawer.close()
                 }
             }
