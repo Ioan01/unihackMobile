@@ -1,6 +1,6 @@
 QT += quick
 QT += network
-QT += qml
+QT += qml sql
 CONFIG += c++11 qmltypes
 
 # You can make your code fail to compile if it uses deprecated APIs.
@@ -16,7 +16,7 @@ RESOURCES += qml.qrc
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
 CONFIG += qmltypes
-QML_IMPORT_NAME = io.qt.examples.backend
+QML_IMPORT_NAME = widgets
 QML_IMPORT_MAJOR_VERSION = 1
 
 # Additional import path used to resolve QML modules just for Qt Quick Designer
@@ -28,6 +28,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
+    JsonLibraries.h \
     loginscreen.h \
     network.h
 

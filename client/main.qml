@@ -1,6 +1,6 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.5
-import io.qt.example.backend 1.0
+import widgets 1.0
 
 ApplicationWindow {
     id: window
