@@ -16,7 +16,7 @@ RESOURCES += qml.qrc
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
 CONFIG += qmltypes
-QML_IMPORT_NAME = io.qt.examples.backend
+QML_IMPORT_NAME = widgets
 QML_IMPORT_MAJOR_VERSION = 1
 
 # Additional import path used to resolve QML modules just for Qt Quick Designer
