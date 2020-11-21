@@ -1,9 +1,32 @@
 #include "loginscreen.h"
 
+#include <string>
+
 loginScreen::loginScreen(QObject *parent) : QObject(parent)
 {
 
 }
+
+void loginScreen::activate()
+{
+    connect(this,&loginScreen::sendQuery,&manager,&queryManager::handleQuery);
+    connect(&manager,&queryManager::queryResponse,this,&loginScreen::handleResponse);
+}
+
+void loginScreen::deactivate()
+{
+    disconnect(this,&loginScreen::sendQuery,&manager,&queryManager::handleQuery);
+}
+
+void loginScreen::login(QString username, QString password)
+{
+    QString loginQuery;
+
+    emit sendQuery(loginQuery);
+}
+
+
+
 
 bool loginScreen::handleResponse(const QJsonDocument &json)
 {
