@@ -3,8 +3,8 @@ import QtQuick.Controls 2.5
 
 ApplicationWindow {
     id: window
-    width: 400
-    height: 600
+    width: 640
+    height: 480
     visible: true
     title: qsTr("Stack")
 
@@ -12,7 +12,6 @@ ApplicationWindow {
         id:toolBar
         contentHeight: toolButton.implicitHeight
         visible: stackView.depth >2 ? 1 : 0 // + sa verifice si pentru sign in
-
         ToolButton {
             id: toolButton
             text: "\u2630"
@@ -36,98 +35,61 @@ ApplicationWindow {
         id: drawer
         width: window.width * 0.66
         height: window.height
-        interactive: stackView.depth >2 ? 1 : 0
 
         Column {
             anchors.fill: parent
 
             ItemDelegate {
                 text: qsTr("Profile")
-<<<<<<< HEAD
                 width: parent.width
+                height:100
                 onClicked: {
                     stackView.pop()
-                    stackView.push("ProfileForm.ui.qml")
+                    stackView.push("Page1Form.ui.qml")
                     drawer.close()
                 }
             }
             ItemDelegate {
                 text: qsTr("Lectures")
                 width: parent.width
+                height:100
                 onClicked: {
                     stackView.pop()
-                    stackView.push("LecturesForm.ui.qml")
+                    stackView.push("Page2Form.ui.qml")
                     drawer.close()
                 }
             }
             ItemDelegate {
-                text: qsTr("Exams")
+                text: qsTr("Practice")
                 width: parent.width
+                height:100
                 onClicked: {
                     stackView.pop()
-                    stackView.push("ExamsForm.ui.qml")
+                    stackView.push("Page2Form.ui.qml")
                     drawer.close()
                 }
             }
             ItemDelegate {
-                text: qsTr("Grades")
+                text: qsTr("Your progress")
                 width: parent.width
+                height:100
                 onClicked: {
                     stackView.pop()
-                    stackView.push("GradesForm.ui.qml")
-=======
-                width: parent.width
-                onClicked: {
-                    stackView.pop()
-                    stackView.push("ProfileForm.ui.qml")
->>>>>>> ACW--main
-                    drawer.close()
-                }
-            }
-            ItemDelegate {
-<<<<<<< HEAD
-                text: qsTr("Settings")
-                width: parent.width
-                onClicked: {
-                    stackView.pop()
-=======
-                text: qsTr("Lectures")
-                width: parent.width
-                onClicked: {
-                    stackView.pop()
-                    stackView.push("LecturesForm.ui.qml")
-                    drawer.close()
-                }
-            }
-            ItemDelegate {
-                text: qsTr("Exams")
-                width: parent.width
-                onClicked: {
-                    stackView.pop()
-                    stackView.push("ExamsForm.ui.qml")
-                    drawer.close()
-                }
-            }
-            ItemDelegate {
-                text: qsTr("Grades")
-                width: parent.width
-                onClicked: {
-                    stackView.pop()
-                    stackView.push("GradesForm.ui.qml")
+                    stackView.push("Page2Form.ui.qml")
                     drawer.close()
                 }
             }
             ItemDelegate {
                 text: qsTr("Settings")
                 width: parent.width
+                height:100
                 onClicked: {
                     stackView.pop()
->>>>>>> ACW--main
-                    stackView.push("SettingsForm.ui.qml")
+                    stackView.push("Page2Form.ui.qml")
                     drawer.close()
                 }
             }
-        }
+       }
     }
 
     StackView {
