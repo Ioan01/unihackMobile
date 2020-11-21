@@ -36,7 +36,7 @@ QByteArray* query::parseJson()
 
         while(que.value(i).isValid())
         {
-            row.insert(driver->record("users").fieldName(i),QJsonValue(que.value(i).toString())); //introducem o coloana in buffer-ul ce rprezinta un obiect din array(ex: "ID":"1")
+            row.insert(driver->record(extractTableName()).fieldName(i),QJsonValue(que.value(i).toString())); //introducem o coloana in buffer-ul ce rprezinta un obiect din array(ex: "ID":"1")
             i++;                                                                                  //de asemenea, valorile isi dau overwrite, similar cu un map, deci nu trebuie resetat
         }
         buffer.append(QJsonValue(row)); //dam append la elementul de array
