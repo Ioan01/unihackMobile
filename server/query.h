@@ -19,6 +19,7 @@ class query : public QObject,public QRunnable
     unsigned int connId;
 private:
     QByteArray* parseJson();
+    QString extractTableName();
 
 signals:
     void finishedParsing(QByteArray *data,unsigned int id,void *selfPtr);

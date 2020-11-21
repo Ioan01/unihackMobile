@@ -57,6 +57,43 @@ QByteArray* query::parseJson()
     return jsonArr;
 }
 
+QString query::extractTableName()
+{
+    QString table_name;
+    QString query = comm;
+    QString from;
+    bool breakall = false;
+    for(int i=0;i<query.size();i++)
+    {
+        //qDebug()<<query.lastIndexOf("FROM",i);
+        if(breakall)
+        {
+            break;
+        }
+        if(query.indexOf("FROM")==i)
+        {
+            for(int j=i;j<i+4;j++)
+            {
+                from.append(query[j]);
+                //qDebug()<<query[j];
+            }
+            if(from=="FROM")
+            {
+                for(int j=i+5;j<query.size() || query[j]!=' ';j++)
+                {
+                    if(j>=query.size())
+                    {
+                        breakall = true;
+                        break;
+                    }
+                    table_name.append(query[j]);
+                }
+            }
+        }
+    }
+    return table_name;
+}
+
 query::query(QSqlDatabase *db, char *query, unsigned int connId) : db(db), comm(query), connId(connId)
 {
 
