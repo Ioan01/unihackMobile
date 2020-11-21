@@ -4,7 +4,7 @@ import QtQuick.Controls 2.12
 Page {
     id: page
     width: 400
-    height: 600
+    height: 900
 
     Rectangle {
         id: rectangle
@@ -20,22 +20,22 @@ Page {
 
         TextField {
             id: textField
-            x: 100
-            y: 120
+            x: 101
+            y: 209
             placeholderText: qsTr("Text Field")
         }
 
         TextField {
             id: textField1
-            x: 100
-            y: 245
+            x: 101
+            y: 359
             placeholderText: qsTr("Text Field")
         }
 
         Label {
             id: label
             x: 130
-            y: 44
+            y: 140
             width: 141
             height: 42
             text: qsTr("Username")
@@ -45,7 +45,7 @@ Page {
         Label {
             id: label1
             x: 134
-            y: 186
+            y: 293
             width: 132
             height: 42
             text: qsTr("Password")
@@ -55,7 +55,7 @@ Page {
         Button {
             id: button1
             x: 138
-            y: 424
+            y: 564
             width: 124
             height: 55
             visible: true
@@ -76,7 +76,7 @@ Page {
         Button {
             id: button2
             x: 150
-            y: 339
+            y: 445
             text: qsTr("")
 
             Image {
@@ -90,18 +90,23 @@ Page {
             }
         }
     }
-    Connections{
-    target:button1
-    onClicked: stackView.push("RegisterScreenForm.ui.qml")
+    Connections {
+        target: button1
+        onClicked: stackView.push("RegisterScreenForm.ui.qml")
     }
 
-    Connections{
-    target:button2
-    onClicked:{stackView.push("Page1Form.ui.qml")
-        stackView.push("Page1Form.ui.qml") //this pushes twice so that I can keep the toolbar hidden before logging in
-
+    Connections {
+        target: button2
+        onClicked: {
+            stackView.push("Page1Form.ui.qml")
+            stackView.push(
+                        "Page1Form.ui.qml") //this pushes twice so that I can keep the toolbar hidden before logging in
+        }
     }
-
-    }
-
 }
+
+/*##^##
+Designer {
+    D{i:0;formeditorZoom:0.75}
+}
+##^##*/

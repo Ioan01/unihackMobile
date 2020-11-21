@@ -40,8 +40,9 @@ ApplicationWindow {
             anchors.fill: parent
 
             ItemDelegate {
-                text: qsTr("Page 1")
+                text: qsTr("Profile")
                 width: parent.width
+                height:100
                 onClicked: {
                     stackView.pop()
                     stackView.push("Page1Form.ui.qml")
@@ -49,15 +50,46 @@ ApplicationWindow {
                 }
             }
             ItemDelegate {
-                text: qsTr("Page 2")
+                text: qsTr("Lectures")
                 width: parent.width
+                height:100
                 onClicked: {
                     stackView.pop()
                     stackView.push("Page2Form.ui.qml")
                     drawer.close()
                 }
             }
-        }
+            ItemDelegate {
+                text: qsTr("Practice")
+                width: parent.width
+                height:100
+                onClicked: {
+                    stackView.pop()
+                    stackView.push("Page2Form.ui.qml")
+                    drawer.close()
+                }
+            }
+            ItemDelegate {
+                text: qsTr("Your progress")
+                width: parent.width
+                height:100
+                onClicked: {
+                    stackView.pop()
+                    stackView.push("Page2Form.ui.qml")
+                    drawer.close()
+                }
+            }
+            ItemDelegate {
+                text: qsTr("Settings")
+                width: parent.width
+                height:100
+                onClicked: {
+                    stackView.pop()
+                    stackView.push("Page2Form.ui.qml")
+                    drawer.close()
+                }
+            }
+       }
     }
 
     StackView {

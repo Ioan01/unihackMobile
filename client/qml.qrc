@@ -13,5 +13,7 @@
         <file>RegisterScreenForm.ui.qml</file>
         <file>login_button.png</file>
         <file>back_button.png</file>
+        <file>Profile.qml</file>
+        <file>ProfileForm.ui.qml</file>
     </qresource>
 </RCC>
