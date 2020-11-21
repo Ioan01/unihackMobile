@@ -6,6 +6,7 @@
 #include <QThreadPool>
 #include <QtConcurrent/QtConcurrentRun>
 #include <QHostAddress>
+#include "querymanager.h"
 
 
 class network : public QObject, public QRunnable
@@ -19,12 +20,14 @@ class network : public QObject, public QRunnable
     char *toWrite = nullptr;
     // 0 for read, 1 for write
     bool mode = 0;
+
+    queryManager manager;
 private:
     void read();
     void write();
 signals:
     void receivedData(QByteArray *arr);
-
+    void sentData();
 
 public slots:
     void onConnect();
@@ -34,6 +37,7 @@ public slots:
     void sendData(QByteArray *array);
 
     void receiveData();
+
 public:
     void run() override;
 
