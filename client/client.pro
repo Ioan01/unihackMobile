@@ -31,6 +31,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 HEADERS += \
     JsonLibraries.h \
     loginscreen.h \
+    querymanager.h \
     network.h
 
 ANDROID_ABIS = armeabi-v7a
