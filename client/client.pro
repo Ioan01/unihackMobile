@@ -1,6 +1,6 @@
 QT += quick
 QT += network
-QT += qml
+QT += qml sql
 CONFIG += c++11 qmltypes
 
 # You can make your code fail to compile if it uses deprecated APIs.
@@ -28,6 +28,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
+    JsonLibraries.h \
     loginscreen.h \
     network.h
 
