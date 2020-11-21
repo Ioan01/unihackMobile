@@ -24,6 +24,10 @@ void network::read()
 
 void network::write()
 {
+    size_t packetSize = strlen(toWrite);
+    sock->write((char*)&packetSize,sizeof(packetSize));
+    sock->write(toWrite);
+
     while (sock->bytesToWrite())
     {
 
@@ -34,8 +38,8 @@ void network::onConnect()
 {
     qDebug() << "Connected to " << sock->peerAddress();
     connected = 1;
-    size_t size = 27;
-
+    size_t size = 28;
+    QByteArray *arr = new QByteArray();
 
 }
 
@@ -46,10 +50,9 @@ void network::onDisconnect()
     while (!connected)
     {
         qDebug() << connected;
-        sock->connectToHost("127.0.0.1",2020);
+        sock->connectToHost("192.168.1.195",2020);
         sock->waitForConnected();
     }
-
 }
 
 void network::sendData(QByteArray *array)
@@ -71,7 +74,6 @@ void network::receiveData()
 
 void network::run()
 {
-
     if (!mode)
         read();
     else write();

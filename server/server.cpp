@@ -26,7 +26,6 @@ void server::onDisconnect(unsigned int id)
 {
     connections[id]->deleteLater();
 
-    //connections.erase(connections.begin() + id);
 }
 
 void server::handleQuery(QByteArray *dat,unsigned int id)

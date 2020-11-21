@@ -1,8 +1,12 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
+#include "network.h"
+#include "loginscreen.h"
+
 
 int main(int argc, char *argv[])
 {
+    qmlRegisterType<loginScreen>();
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 
     QGuiApplication app(argc, argv);
@@ -14,7 +18,12 @@ int main(int argc, char *argv[])
         if (!obj && url == objUrl)
             QCoreApplication::exit(-1);
     }, Qt::QueuedConnection);
-    engine.load(url);
 
+    loginScreen login;
+    engine.rootContext()->setContextProperty("login",&login);
+
+
+    engine.load(url);
+    network net(&app);
     return app.exec();
 }
