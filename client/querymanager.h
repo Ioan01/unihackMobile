@@ -27,6 +27,6 @@ public slots:
 
 public:
     queryManager();
-};
+}extern manager;
 
 #endif // QUERYMANAGER_H

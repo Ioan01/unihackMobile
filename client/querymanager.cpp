@@ -3,9 +3,10 @@
 #include <QJsonDocument>
 
 
+queryManager manager;
+
 void queryManager::handleQuery(QString query)
 {
-
     if (queryQueue.empty())
     {
         emit newQuery(new QByteArray(query.toUtf8()));

@@ -3,6 +3,9 @@
 
 #include <QObject>
 #include <QtQml>
+#include "querymanager.h"
+
+
 
 class loginScreen : public QObject
 {
@@ -24,14 +27,24 @@ public:
     void setUsername(const QString& username) { this->_username = username; }
     void setPassword(const QString& password) { this->_password = password; }
 
+    // functions from QML
+    Q_INVOKABLE void activate();
+    Q_INVOKABLE void deactivate();
+    Q_INVOKABLE void login(QString username,QString password);
+
 signals:
-    void sendQuery(const QString& query);
-    void faultyLogin();
+    // signals to c++
+    void sendQuery(QString query);
+
+
+    // signals to QML
     void loginSuccess();
     void loginFailed();
 
 public slots:
+    // slots from C++
     bool handleResponse(const QJsonDocument& json);
+    //slots from QML
 
 };
 
