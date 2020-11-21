@@ -18,16 +18,14 @@ class query : public QObject,public QRunnable
     char *comm;
     unsigned int connId;
 private:
-    void converToJson();
+    QByteArray* parseJson();
 
 signals:
     void finishedParsing(QByteArray *data,unsigned int id,void *selfPtr);
 
 public:
-
     void run() override;
     void start();
-    QByteArray* parse_json(const QString& query, const QSqlQuery& query_result);
     query(QSqlDatabase *db,char *query,unsigned int connId);
 };
 
