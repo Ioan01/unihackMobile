@@ -15,8 +15,6 @@ void queryManager::handleQuery(QString query)
         arrayList.push_front(new QByteArray(query.toUtf8()));
         queryQueue.push(query);
     }
-
-
 }
 
 void queryManager::networkFinished()
