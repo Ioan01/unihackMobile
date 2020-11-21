@@ -52,23 +52,21 @@ void network::onDisconnect()
         sock->connectToHost("127.0.0.1",2020);
         sock->waitForConnected();
     }
-    //char a[] = "SELECT username FROM users";
-    size_t size = 27;
 
-    sock->write((char*)&size,sizeof(size_t));
-    sock->write("SELECT username FROM users");
 }
 
 void network::sendData(QByteArray *array)
 {
-    running.waitForFinished();
+    if (running.isRunning())
+        running.waitForFinished();
     mode = 1;
     running = QtConcurrent::run(this,&network::run);
 }
 
 void network::receiveData()
 {
-    running.waitForFinished();
+    if (running.isRunning())
+        running.waitForFinished();
     mode =0;
     running = QtConcurrent::run(this,&network::run);
 }

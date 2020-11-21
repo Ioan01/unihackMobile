@@ -15,13 +15,15 @@ class connection : public QObject,public QRunnable
     Q_OBJECT
     unsigned int index;
     QTcpSocket *sock;
+    bool lostConnection = 0;
     QByteArray arr;
     QByteArray* externalArr;
 
     QFuture<void>dataHandle;
     // 0 to read, 1 to write
     bool runMode = 0;
-
+    bool finishedReading = 1;
+    bool finishedWriting = 1;
 
     size_t toRead = 0;
 signals:

@@ -11,7 +11,6 @@ void query::run()
 {
     qDebug() << "Query = " << comm;
     QByteArray* jsonArr = parseJson();
-    delete comm;
     emit finishedParsing(jsonArr,connId,this);
 }
 
@@ -49,6 +48,7 @@ QByteArray* query::parseJson()
 
     // after json is finished
     // store array in this
+
     QJsonDocument j_doc = QJsonDocument(test);
     //qDebug()<<j_doc;
     //QVariant var = j_doc.toVariant();

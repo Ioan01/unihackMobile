@@ -2,16 +2,20 @@
 
 void connection::startRead()
 {
+    while (!finishedReading)
+    {
+
+    }
     qDebug() << "Got new packet";
     runMode = 0;
     //QThreadPool::globalInstance()->start(this);
-    if (dataHandle.isRunning())
-        dataHandle.waitForFinished();
+
     dataHandle = QtConcurrent::run(this,&connection::run);
 }
 
 void connection::onDisconnect()
 {
+    lostConnection = 1;
     toRead = 0;
     emit disconnected(index);
 }
@@ -19,6 +23,10 @@ void connection::onDisconnect()
 
 void connection::sendQueryData(QByteArray *array)
 {
+    while (!finishedWriting)
+    {
+
+    }
     externalArr = array;
     runMode = 1;
     if (dataHandle.isRunning())
@@ -34,29 +42,32 @@ void connection::queryDataSent()
 
 void connection::read()
 {
-    while (sock->bytesAvailable())
+    finishedReading = 0;
+    while (sock->bytesAvailable() && !lostConnection)
     {
         sock->read((char*)&toRead,sizeof(size_t));
-        while(arr.size() < toRead)
+        while(arr.size() < toRead && !lostConnection)
         {
             toRead -= sock->bytesAvailable();
             arr.append(sock->readAll());
         }
     }
-    qDebug() << arr.size();
+    qDebug() << "Packet: " << arr;
     if (arr.size() > 0)
         emit receivedQuery(&arr,index);
-   // sock->flush()
+   finishedReading = 1;
 }
 
 void connection::write()
 {
+    finishedWriting = 0;
     sock->write(*externalArr);
-    while (sock->bytesToWrite())
+    while (sock->bytesToWrite() && !lostConnection)
     {
 
     }
     queryDataSent();
+    finishedWriting = 1;
 }
 
 void connection::run()
